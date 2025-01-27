@@ -41,7 +41,7 @@ function InterviewStart({params}) {
         <div className='flex flex-col p-5 my-5 rounded-lg border gap-5'>
         <h2 className='text-lg'><strong>Job Role/ Job Position</strong>  : {interviewDetails.jobPosition} </h2>
         <h2 className='text-lg'><strong>Job Description</strong>  : {interviewDetails.jobDescription} </h2>
-        <h2 className='text-lg'><strong>Years of Experience</strong>  : {interviewDetails.jobDescription} </h2>
+        <h2 className='text-lg'><strong>Years of Experience</strong>  : {interviewDetails.jobExperience} </h2>
 
         </div>
         <div className='rounded-lg border border-yellow-400 bg-yellow-200 p-5'>
@@ -53,28 +53,43 @@ function InterviewStart({params}) {
     <div className='col-span-1 '>
     {
     webCamEnabled ? (
-        <Webcam
-        mirrored={true}
-        onUserMedia = {() => setWebcamEnabled(true)}
-        onUserMediaError={() => setWebcamEnabled(false)}
-            style={{
-                height:300,
-                width:300
-            }} />
+        <div className='flex flex-col items-center gap-4'>
+            <Webcam
+                mirrored={true}
+                onUserMedia={() => setWebcamEnabled(true)}
+                onUserMediaError={() => setWebcamEnabled(false)}
+                style={{
+                    height: 300,
+                    width: 300
+                }}
+            />
+            <Button 
+                variant='ghost' 
+                onClick={() => setWebcamEnabled(false)}
+            >
+                Disable Webcam
+            </Button>
+            <Link href={`/dashboard/interview/${unwrappedParams.interviewId}/start`}>
+                <Button>Start Interview</Button>
+            </Link>
+        </div>
     ) : (
         <>
-        <WebcamIcon className='w-full h-72 my-4 p-20 bg-secondary rounded-lg border'/>
-        <Button variant='ghost' className='text-center' onClick={()=>setWebcamEnabled(true)}> Enable Webcam and microphone </Button>
-        <div className=' mt-3 '>
-            <Link href={`/dashboard/interview/${unwrappedParams.interviewId}/start`}>
-            <Button>Start Interview</Button>
-            </Link>
-        
-        </div>
+            <WebcamIcon className='w-full h-72 my-4 p-20 bg-secondary rounded-lg border'/>
+            <Button 
+                variant='ghost' 
+                className='text-center' 
+                onClick={() => setWebcamEnabled(true)}
+            >
+                Enable Webcam and microphone
+            </Button>
+            <div className='mt-3'>
+                <Link href={`/dashboard/interview/${unwrappedParams.interviewId}/start`}>
+                    <Button>Start Interview</Button>
+                </Link>
+            </div>
         </>
-        
-    )
-}
+    )}
     </div>
     
     </div>
