@@ -36,7 +36,8 @@ function AddNewInterview() {
         setLoading(true);
         console.log('submitted');
         console.log(jobPosition, jobDesc, jobExperience);
-        const prompt = `Given , job description as ${jobPosition} and skills listed as : ${jobDesc} and years of experience as ${jobExperience} give me ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} questions asked and their answers in JSON format`;
+        const prompt = `Given , job description as ${jobPosition} and skills listed as : ${jobDesc} and years of experience as ${jobExperience} give me ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} questions asked and their answers in JSON format
+        with questions stored in a field called question and answers stored in answer field and the entire array of these question and answers stored in a field called questions`;
          
         const response = await chatSession.sendMessage(prompt);
         const MockJSONResp = response.response.text().replace('```json', '').replace('```', '');
