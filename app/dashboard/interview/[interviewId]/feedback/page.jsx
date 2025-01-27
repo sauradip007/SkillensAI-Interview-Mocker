@@ -45,7 +45,7 @@ const GetFeedback = async() => {
         <>
         <h2 className='text-3xl font-bold text-green-400'>Congratulations!</h2>
         <h2 className='font-bold text-2xl'>Here is your interview feedback </h2>
-        <h2 className='text-indigo-500 text-lg my-3'>Your overall score is 7/10    </h2>
+        <h2 className='text-indigo-500 text-lg my-3'> Your overall score is {(feedbackList.reduce((acc, item) => acc + Number(item.rating), 0) / feedbackList.length).toFixed(1)}/10    </h2>
       <h2 className='text-gray-500 text-sm'>Here is your feedback and scope of improvement</h2>
       {feedbackList && feedbackList.map((item,index)=>(
         <Collapsible className='mt-7' key={index}>
